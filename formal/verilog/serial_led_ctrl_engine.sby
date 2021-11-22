@@ -1,0 +1,15 @@
+[options]
+mode bmc
+depth 33
+
+[engines]
+smtbmc
+
+[script]
+read -formal serial_led_ctrl_engine.v
+prep -top serial_led_ctrl_engine
+opt_merge -share_all
+
+[files]
+../../rtl/verilog/serial_led_ctrl_engine.v
+
