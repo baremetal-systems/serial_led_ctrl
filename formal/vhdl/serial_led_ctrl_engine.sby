@@ -1,0 +1,19 @@
+[tasks]
+bmc
+
+[options]
+depth 33
+mode bmc
+
+[engines]
+bmc: smtbmc
+
+[script]
+ghdl --std=08 serial_led_ctrl_engine.vhd serial_led_ctrl_engine.psl -e serial_led_ctrl_engine
+prep -top serial_led_ctrl_engine
+opt_merge -share_all
+
+[files]
+serial_led_ctrl_engine.psl
+../../rtl/vhdl/serial_led_ctrl_engine.vhd
+

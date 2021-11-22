@@ -1,0 +1,11 @@
+vunit i_serial_led_ctrl_engine(serial_led_ctrl_engine(synthesis))
+{
+    default clock is rising_edge(clk);
+
+    f_data_valid : assume always (unsigned(led_data_reg) >= 0);
+	f_bit_count_valid : assume always (unsigned(bit_count_reg) >= 0);
+	f_tick_count_valid : assume always (unsigned(led_tick_counter_reg) >= 0);
+
+	f_tick_count_limit : assert always (unsigned(led_tick_counter_reg) < LED_PULSE_TICK_COUNT);
+
+}
