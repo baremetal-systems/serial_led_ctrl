@@ -1,3 +1,20 @@
+-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- Filename: serial_led_ctrl_wbs.vhd
+-- 
+--
+-- Brief: Write data words in serial to LEDs using one wire interface, such as WS2812 or SK6812
+--        Supports RGB as well as RGBW (24/32 bit serial interface)
+--
+--
+-- Author: Digital Runecaster
+-- Date: November 2021
+-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- Version: 1.0
+-- License: MLP v2.0 - Mozilla Public License, v. 2.0
+-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- Status: Desgin Done
+-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 library IEEE;
 
 use IEEE.std_logic_1164.all;
