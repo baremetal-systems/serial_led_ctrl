@@ -23,7 +23,7 @@ use IEEE.numeric_std.all;
 
 entity serial_led_ctrl_wbs is
     generic (
-          SYSCON_CLK_FREQ         : natrual := 100000000                                -- system clock frequency
+          SYSCON_CLK_FREQ         : natural := 100000000                                -- system clock frequency
         ; WB_ADDR_WIDTH           : natural := 8                                        -- WB address bus width
         ; WB_DATA_WIDTH           : natural := 32                                       -- WB data width, must be equal to LED data
     );
@@ -44,8 +44,8 @@ begin architecture synthesis of serial_led_ctrl_wbs
     component serial_led_ctrl_engine is
     
         generic (
-              CLOCK_FREQ                :   natural := 1  
-    		; LED_DATA_WORD             :   natural := 32          
+              CLOCK_FREQ                :   natural  
+    		; LED_DATA_WORD             :   natural          
         );
         port (
               clk                       :   in std_logic   
