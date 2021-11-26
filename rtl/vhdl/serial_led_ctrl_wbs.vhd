@@ -90,12 +90,12 @@ begin
     register_update_proc: process(wb_clk_i)
     begin
         if (rising_edge(wb_clk_i)) then
-            if (wb_rst_i) then
+            if (wb_rst_i = '1') then
                wr_en_led_engine <= '0';
                status_reg <= (others => '0');
                led_data <= (others => '0');
             else
-                if (wb_cyc_i and wb_stb_i and not wb_stall_o) then
+                if (wb_cyc_i = '1' and wb_stb_i = '1' and wb_stall_o = '0') then
                     if (unsigned(wb_addr_i) = 1) then
                         led_data <= wb_dat_i;
                         wr_en_led_engine <= '1';
@@ -124,7 +124,7 @@ begin
     trans_ack_compl_proc: process(wb_clk_i)
     begin
         if (rising_edge(clk)) then
-            if (wb_rst_i) then
+            if (wb_rst_i = '1') then
                 wb_ack_o <= '0';
             else
                 wb_ack_o <= wb_stb_i and led_data_ack;
