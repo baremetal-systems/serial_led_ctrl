@@ -6,6 +6,7 @@
 --        Peripherale is stalled as long as data word needs to be written to output
 --        Bus transaction gets acknowledged after writing data word to register
 --
+-- Bus: Wishbone, Version B4
 --
 -- Author: Digital Runecaster
 -- Date: November 2021
