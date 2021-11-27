@@ -6,7 +6,9 @@
 --        Peripherale is stalled as long as data word needs to be written to output
 --        Bus transaction gets acknowledged after writing data word to register
 --
--- Bus: AXI, Version 4
+--
+--
+-- Bus: AXI-Lite, Version 4
 --
 -- Author: Digital Runecaster
 -- Date: November 2021
@@ -24,7 +26,27 @@ use IEEE.numeric_std.all;
 entity serial_led_ctrl_axi4s is
 
 end entity serial_led_ctrl_axi4s;
-
+    generic (
+          ACLK_FREQ                     : natural = 10000000
+        ; TDATA_WIDTH                   : natural = 32
+        ; AWADDR_WIDTH                  : natural = 8
+        ; ID_WIDTH                      : natural = 1
+    );
+    port (
+          ACLK                          : in std_logic
+        ; ARESETn                       : in std_logic                                          
+        ; AWID                          : in std_logic_vector (ID_WIDTH - 1 downto 0)                           -- write address ID, 
+        ; AWADDR                        : in std_logic_vector (AWADDR_WIDTH - 1 downto 0);                      -- write address 
+        ; AWVALID                       : in std_logic                                                          -- write address valid
+        ; WDATA                         : in std_logic_vector (WDATA_WIDTH - 1 downto 0);                       -- write data
+        ; WSTRB                         : in std_logic                                                          -- write strobes, valid data indication bits
+        ; WVALID                        : in std_logic                                                          -- write valid, data written is valid
+        ; BREADY                        : in std_logic                                                          -- response ready
+        ; AWREADY                       : out std_logic := '0'                                                  -- write address ready
+        ; WREADY                        : out std_logic := '0'                                                  -- write ready, peripheral accepts data
+        ; BID                           : out std_logic_vector (ID_WIDTH - 1 downto 0) := (others => '0')       -- response ID tag
+        ; BVALID                        : out std_logic := '0'                                                  -- write response valid
+    );
 architecture synthesis of serial_led_ctrl_axi4s is
 
     component serial_led_ctrl_engine is
